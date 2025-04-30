@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+// import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Container } from 'react-bootstrap';
+
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+
+import Header from './components/Header';
+import Registration from './components/Registration';
+import Login from './components/Login';
+
+import HomePage from './pages/HomePage';
+import BooksPage from './pages/BooksPage';
+import BookDetailsPage from './pages/BookDetailsPage';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Provider store={store}>
+            <Container className="col-lg-10 mx-auto p-4 py-md-5">
+                <BrowserRouter>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<HomePage />}></Route>
+                        <Route path="/registration" element={<Registration />}></Route>
+                        <Route path="/login" element={<Login />}></Route>
+                        <Route path="/books" element={<BooksPage />}></Route>
+                        <Route path="/books/:bookId" element={<BookDetailsPage />}></Route>
+                        {/* <Route path="/bookshelf" element={<BookshelfPage />}></Route>
+                        <Route path="/bookshelf/:bookId" element={<BookshelfDetailsPage />}></Route> */}
+
+
+                        {/*<Route path="/account" element={
+                            <ProtectedRoute allowedRoles={['user']}>
+                                <Account />
+                            </ProtectedRoute>
+                        }></Route> */}
+
+                    </Routes>
+                </BrowserRouter>
+            </Container>
+        </Provider>
+    );
 }
 
 export default App;

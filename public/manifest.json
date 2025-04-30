@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Reshelve",
+  "name": "Reshelve: your virtual bookshelf",
   "icons": [
     {
       "src": "favicon.ico",
