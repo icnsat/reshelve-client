@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button, Container, Row, Col, Image, Spinner, Alert, Form } from 'react-bootstrap';
+import { Button, Container, Row, Col, Image, Spinner, Alert, Form, Modal } from 'react-bootstrap';
 import { Pencil, Trash } from 'react-bootstrap-icons';
 
 
@@ -30,6 +30,9 @@ const BookDetailsPage = () => {
 
     const [editingTagId, setEditingTagId] = useState(null);
     const [editedTagName, setEditedTagName] = useState('');
+
+    const [showDeleteModal, setShowDeleteModal] = useState(false);  
+    
 
     const [error, setError] = useState(null);
 
@@ -191,7 +194,7 @@ const BookDetailsPage = () => {
                     {isAuthenticated ? (
                         <>
                             {added ? (
-                                <Button onClick={handleDeleteFromBookshelf} disabled={deleting} variant='danger'>
+                                <Button onClick={() => setShowDeleteModal(true)} disabled={deleting} variant='danger'>
                                     {deleting ? 'Удаление...' : 'Удалить из аккаунта'}
                                 </Button>
                                 ) : (
@@ -199,6 +202,18 @@ const BookDetailsPage = () => {
                                     {adding ? 'Добавление...' : 'Добавить в мой аккаунт'}
                                 </Button>
                             )}
+
+                            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Подтверждение удаления</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>Вы точно хотите удалить эту книгу из своей полки?
+                                    Вместе с ней удалятся комментарии и логи.</Modal.Body>
+                                <Modal.Footer>
+                                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>Отмена</Button>
+                                    <Button variant="danger" onClick={handleDeleteFromBookshelf}>Удалить</Button>
+                                </Modal.Footer>
+                            </Modal>
 
                             {bookshelfId && (
                                 <>

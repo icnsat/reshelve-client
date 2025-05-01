@@ -10,10 +10,13 @@ import { store } from './app/store';
 import Header from './components/Header';
 import Registration from './components/Registration';
 import Login from './components/Login';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import HomePage from './pages/HomePage';
 import BooksPage from './pages/BooksPage';
 import BookDetailsPage from './pages/BookDetailsPage';
+import BookshelfPage from './pages/BookshelfPage';
+import BookshelfDetailsPage from './pages/BookshelfDetailsPage';
 
 
 function App() {
@@ -28,9 +31,19 @@ function App() {
                         <Route path="/login" element={<Login />}></Route>
                         <Route path="/books" element={<BooksPage />}></Route>
                         <Route path="/books/:bookId" element={<BookDetailsPage />}></Route>
-                        {/* <Route path="/bookshelf" element={<BookshelfPage />}></Route>
-                        <Route path="/bookshelf/:bookId" element={<BookshelfDetailsPage />}></Route> */}
 
+
+                        <Route path="/bookshelf" element={
+                            <ProtectedRoute>
+                                <BookshelfPage />
+                            </ProtectedRoute>
+                        }></Route>
+
+                        <Route path="/bookshelf/:bookshelfId" element={
+                            <ProtectedRoute>
+                                <BookshelfDetailsPage />
+                            </ProtectedRoute>
+                        }></Route>
 
                         {/*<Route path="/account" element={
                             <ProtectedRoute allowedRoles={['user']}>

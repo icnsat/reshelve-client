@@ -60,7 +60,8 @@ const BooksPage = () => {
                     <Col key={book.id} sm={6} lg={3} className='mb-4'>
                         <Card style={{
                             height: "100%",
-                            flexDirection: "column"
+                            flexDirection: "column",
+                            cursor: 'pointer'
                         }} onClick={() => handleCardClick(book.id)}>
                         <Card.Img
                             variant="top"
