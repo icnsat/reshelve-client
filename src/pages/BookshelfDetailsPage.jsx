@@ -437,7 +437,7 @@ const BookshelfDetailsPage = () => {
                                         <p>{comment.content}</p>
                                         <div className="d-flex align-items-center gap-3">
                                             <small className="text-muted">Создано: {new Date(comment.created_at).toLocaleDateString()}</small>
-                                            <div style="height: 1rem; width: 0; border-left: 1px solid;" class="text-muted"></div>
+                                            <div style={{height: '1rem', width: 0, borderLeft: '1px solid'}} className="text-muted" />
                                             <small className="text-muted">Отредактировано: {new Date(comment.updated_at).toLocaleDateString()}</small>
                                             <div className="ms-auto d-flex gap-2">
                                                 <Button
