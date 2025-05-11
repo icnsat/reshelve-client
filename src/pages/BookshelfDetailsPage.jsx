@@ -435,30 +435,32 @@ const BookshelfDetailsPage = () => {
                                 ) : (
                                     <>
                                         <p>{comment.content}</p>
-                                        <small className="text-muted">Создано: {new Date(comment.created_at).toLocaleDateString()}</small>
-                                        <small className="text-muted">Отредактировано: {new Date(comment.updated_at).toLocaleDateString()}</small>
-                                        <div className="mt-2">
-                                            <Button
-                                                size="sm"
-                                                variant="outline-warning"
-                                                className="me-2"
-                                                title="Редактировать"
-                                                onClick={() => {
-                                                    setEditingCommentId(comment.id);
-                                                    setEditingCommentContent(comment.content);
-                                                }}
-                                            >
-                                                <Pencil size={14} />
-                                            </Button>
-                                            <Button
-                                                size="sm"
-                                                variant="outline-danger"
-                                                className="me-2"
-                                                title="Удалить"
-                                                onClick={() => confirmDeleteComment(comment.id)}
-                                            >
-                                                <Trash size={14} />
-                                            </Button>
+                                        <div className="d-flex align-items-center gap-3">
+                                            <small className="text-muted">Создано: {new Date(comment.created_at).toLocaleDateString()} | </small>
+                                            <small className="text-muted">Отредактировано: {new Date(comment.updated_at).toLocaleDateString()}</small>
+                                            <div className="ms-auto d-flex gap-2">
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline-warning"
+                                                    className="me-2"
+                                                    title="Редактировать"
+                                                    onClick={() => {
+                                                        setEditingCommentId(comment.id);
+                                                        setEditingCommentContent(comment.content);
+                                                    }}
+                                                >
+                                                    <Pencil size={14} />
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline-danger"
+                                                    className="me-2"
+                                                    title="Удалить"
+                                                    onClick={() => confirmDeleteComment(comment.id)}
+                                                >
+                                                    <Trash size={14} />
+                                                </Button>
+                                            </div>
                                         </div>
                                     </>
                                 )}
@@ -492,7 +494,7 @@ const BookshelfDetailsPage = () => {
                                                 <Button
                                                     size="sm"
                                                     variant="success"
-                                                    className="mt-2"
+                                                    className="mt-1"
                                                     onClick={handleEditLog}
                                                 >
                                                     ✓
@@ -500,7 +502,7 @@ const BookshelfDetailsPage = () => {
                                                 <Button
                                                     size="sm"
                                                     variant="secondary"
-                                                    className="mt-2 ms-2"
+                                                    className="mt-1 ms-2"
                                                     onClick={() => setEditingLogId(null)}
                                                 >
                                                     ✕
