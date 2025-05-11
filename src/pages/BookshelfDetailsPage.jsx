@@ -436,6 +436,7 @@ const BookshelfDetailsPage = () => {
                                     <>
                                         <p>{comment.content}</p>
                                         <small className="text-muted">Создано: {new Date(comment.created_at).toLocaleDateString()}</small>
+                                        <small className="text-muted">Отредактировано: {new Date(comment.updated_at).toLocaleDateString()}</small>
                                         <div className="mt-2">
                                             <Button
                                                 size="sm"
@@ -491,16 +492,15 @@ const BookshelfDetailsPage = () => {
                                                 <Button
                                                     size="sm"
                                                     variant="success"
+                                                    className="mt-2"
                                                     onClick={handleEditLog}
                                                 >
                                                     ✓
                                                 </Button>
-                                            </Col>
-                                            <Col>
                                                 <Button
                                                     size="sm"
                                                     variant="secondary"
-                                                    className="ms-2"
+                                                    className="mt-2 ms-2"
                                                     onClick={() => setEditingLogId(null)}
                                                 >
                                                     ✕
@@ -510,7 +510,7 @@ const BookshelfDetailsPage = () => {
                                     ) : (
                                         <>
                                             <div>
-                                                <strong>{log.date}</strong>: {log.start_page} → {log.end_page} стр. за {log.duration_minutes} мин.
+                                                <strong>{new Date(log.date).toLocaleDateString()}</strong>: {log.start_page} → {log.end_page} стр. за {log.duration_minutes} мин.
                                             </div>
                                             <Button
                                                 size="sm"
