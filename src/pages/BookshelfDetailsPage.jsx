@@ -415,24 +415,48 @@ const BookshelfDetailsPage = () => {
                                             value={editingCommentContent}
                                             onChange={(e) => setEditingCommentContent(e.target.value)}
                                         />
-                                        <Button size="sm" className="mt-2 me-2" onClick={handleEditComment}>Сохранить</Button>
-                                        <Button size="sm" className="mt-2" variant="secondary" onClick={() => setEditingCommentId(null)}>Отмена</Button>
+                                        <Button
+                                            size="sm"
+                                            className="mt-2 me-2"
+                                            variant="success"
+                                            onClick={handleEditComment}
+                                        >
+                                            ✓
+                                        </Button>
+                                        <Button
+                                            size="sm"
+                                            className="mt-2"
+                                            variant="secondary"
+                                            onClick={() => setEditingCommentId(null)}
+                                        >
+                                            ✕
+                                        </Button>
                                     </>
                                 ) : (
                                     <>
                                         <p>{comment.content}</p>
                                         <small className="text-muted">Создано: {new Date(comment.created_at).toLocaleDateString()}</small>
                                         <div className="mt-2">
-                                            <Button size="sm" variant="outline-primary" className="me-2"
+                                            <Button
+                                                size="sm"
+                                                variant="outline-warning"
+                                                className="me-2"
+                                                title="Редактировать"
                                                 onClick={() => {
                                                     setEditingCommentId(comment.id);
                                                     setEditingCommentContent(comment.content);
                                                 }}
                                             >
-                                                Редактировать
+                                                <Pencil size={14} />
                                             </Button>
-                                            <Button size="sm" variant="outline-danger" onClick={() => confirmDeleteComment(comment.id)}>
-                                                Удалить
+                                            <Button
+                                                size="sm"
+                                                variant="outline-danger"
+                                                className="me-2"
+                                                title="Удалить"
+                                                onClick={() => confirmDeleteComment(comment.id)}
+                                            >
+                                                <Trash size={14} />
                                             </Button>
                                         </div>
                                     </>
@@ -464,8 +488,23 @@ const BookshelfDetailsPage = () => {
                                             <Col><Form.Control type="number" min="0" value={editingLogData.duration_minutes} onChange={(e) => setEditingLogData(prev => ({ ...prev, duration_minutes: e.target.value }))} /></Col>
                                             <Col><Form.Control type="date" value={editingLogData.date} onChange={(e) => setEditingLogData(prev => ({ ...prev, date: e.target.value }))} /></Col>
                                             <Col>
-                                                <Button size="sm" onClick={handleEditLog}>Сохранить</Button>
-                                                <Button size="sm" variant="secondary" onClick={() => setEditingLogId(null)} className="ms-2">Отмена</Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="success"
+                                                    onClick={handleEditLog}
+                                                >
+                                                    ✓
+                                                </Button>
+                                            </Col>
+                                            <Col>
+                                                <Button
+                                                    size="sm"
+                                                    variant="secondary"
+                                                    className="ms-2"
+                                                    onClick={() => setEditingLogId(null)}
+                                                >
+                                                    ✕
+                                                </Button>
                                             </Col>
                                         </Row>
                                     ) : (
@@ -473,16 +512,26 @@ const BookshelfDetailsPage = () => {
                                             <div>
                                                 <strong>{log.date}</strong>: {log.start_page} → {log.end_page} стр. за {log.duration_minutes} мин.
                                             </div>
-                                            <Button size="sm" variant="outline-primary" className="me-2 mt-2"
+                                            <Button
+                                                size="sm"
+                                                variant="outline-warning"
+                                                className="me-2 mt-2"
+                                                titile="Редактировать"
                                                 onClick={() => {
                                                     setEditingLogId(log.id);
                                                     setEditingLogData(log);
                                                 }}
                                             >
-                                                Редактировать
+                                                <Pencil size={14} />
                                             </Button>
-                                            <Button size="sm" variant="outline-danger" onClick={() => confirmDeleteLog(log.id)}>
-                                                Удалить
+                                            <Button
+                                                size="sm"
+                                                variant="outline-danger"
+                                                className="me-2 mt-2"
+                                                title="Удалить"
+                                                onClick={() => confirmDeleteLog(log.id)}
+                                            >
+                                                <Trash size={14} />
                                             </Button>
                                         </>
                                     )}
