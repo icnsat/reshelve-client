@@ -436,7 +436,8 @@ const BookshelfDetailsPage = () => {
                                     <>
                                         <p>{comment.content}</p>
                                         <div className="d-flex align-items-center gap-3">
-                                            <small className="text-muted">Создано: {new Date(comment.created_at).toLocaleDateString()} | </small>
+                                            <small className="text-muted">Создано: {new Date(comment.created_at).toLocaleDateString()}</small>
+                                            <div style="height: 1rem; width: 0; border-left: 1px solid;" class="text-muted"></div>
                                             <small className="text-muted">Отредактировано: {new Date(comment.updated_at).toLocaleDateString()}</small>
                                             <div className="ms-auto d-flex gap-2">
                                                 <Button
@@ -510,32 +511,34 @@ const BookshelfDetailsPage = () => {
                                             </Col>
                                         </Row>
                                     ) : (
-                                        <>
+                                        <div className="d-flex justify-content-between align-items-center">
                                             <div>
                                                 <strong>{new Date(log.date).toLocaleDateString()}</strong>: {log.start_page} → {log.end_page} стр. за {log.duration_minutes} мин.
                                             </div>
-                                            <Button
-                                                size="sm"
-                                                variant="outline-warning"
-                                                className="me-2 mt-2"
-                                                titile="Редактировать"
-                                                onClick={() => {
-                                                    setEditingLogId(log.id);
-                                                    setEditingLogData(log);
-                                                }}
-                                            >
-                                                <Pencil size={14} />
-                                            </Button>
-                                            <Button
-                                                size="sm"
-                                                variant="outline-danger"
-                                                className="me-2 mt-2"
-                                                title="Удалить"
-                                                onClick={() => confirmDeleteLog(log.id)}
-                                            >
-                                                <Trash size={14} />
-                                            </Button>
-                                        </>
+                                            <div>
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline-warning"
+                                                    className="me-2"
+                                                    titile="Редактировать"
+                                                    onClick={() => {
+                                                        setEditingLogId(log.id);
+                                                        setEditingLogData(log);
+                                                    }}
+                                                >
+                                                    <Pencil size={14} />
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline-danger"
+                                                    className="me-2"
+                                                    title="Удалить"
+                                                    onClick={() => confirmDeleteLog(log.id)}
+                                                >
+                                                    <Trash size={14} />
+                                                </Button>
+                                            </div>
+                                        </div>
                                     )}
                                 </Card.Body>
                             </Card>
