@@ -14,7 +14,7 @@ const AdminBooksPage = () => {
     genre: '',
     cover_url: '',
     description: '',
-    published_year: ''
+    published_year: null
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -46,7 +46,7 @@ const AdminBooksPage = () => {
       genre: '',
       cover_url: '',
       description: '',
-      published_year: ''
+      published_year: null
     });
     setModalType('create');
     setShowEditModal(true);
