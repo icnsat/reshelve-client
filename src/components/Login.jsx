@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { Button, Container, Card, Form, Alert, Nav } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-// import jwtDecode from 'jwt-decode';
 
 import { login } from "../slices/authSlice";
-// import { clearPendingBooking } from '../slices/bookingSlice';
 import api from '../api/api';
 
 const Login = () => {
@@ -15,7 +13,6 @@ const Login = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const pendingBookingData = useSelector(state => state.booking.pendingBookingData);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -29,12 +26,7 @@ const Login = () => {
                 const { token: token } = response.data;
                 console.log(response.data);
                 dispatch(login({ token }))
-                // if (pendingBookingData) {
-                //     navigate('/booking/' + pendingBookingData.roomId, { state: pendingBookingData });
-                //     // dispatch(clearPendingBooking()); // очищаем чтобы не мусорить
-                // } else {
-                    navigate('/');
-                // }
+                navigate('/');
             } else {
                 setError('Недействительные учетные данные.');
             }

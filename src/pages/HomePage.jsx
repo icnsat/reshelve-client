@@ -14,7 +14,6 @@ function HomePage() {
                 </Col>
             </Row>
 
-            {/* Features section */}
             <Row className="mt-5 text-center">
             <Col md={4}>
                 <h5>📚 Добавляйте книги</h5>

@@ -55,7 +55,6 @@ const BookshelfPage = () => {
     };
 
     const filteredBooks = books.filter((book) => {
-        // console.log(books);
         const matchesSearch = 
             book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             book.author.toLowerCase().includes(searchTerm.toLowerCase());
@@ -97,7 +96,6 @@ const BookshelfPage = () => {
                     </Col>
                 ) : (
                     <Col>
-                        {/* <h5>Фильтр по тегам:</h5> */}
                         <Stack direction="horizontal" gap={2} className="flex-wrap">
                             {tags.map(tag => (
                                 <Button

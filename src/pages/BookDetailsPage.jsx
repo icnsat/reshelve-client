@@ -10,7 +10,6 @@ import api from '../api/api';
 
 const BookDetailsPage = () => {
     const { bookId } = useParams();
-    // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
 
     const { isAuthenticated, user } = useSelector((state) => state.auth);
     const IsAdmin = (isAuthenticated && user.role === 'admin');
@@ -53,7 +52,7 @@ const BookDetailsPage = () => {
                 setBook(response.data.book);
                 setBookshelfId(response.data.bookshelfId || null);
                 setBookshelfTags(response.data.bookshelfTags?.map(tag => tag.id) || []);
-                setUserTags(response.data.userTags || []); // загрузка чисто пользовательских тегов
+                setUserTags(response.data.userTags || []);
                 setSystemTags(response.data.systemTags || [])
                 setAllTags(response.data.allTags || []);
                 setAdded(!!response.data.bookshelfId);
@@ -222,7 +221,6 @@ const BookDetailsPage = () => {
 
                             {bookshelfId && (
                                 <>
-                                    {/* ТЕГИ */}
                                     <h4 className="mt-5">Теги</h4>
                                     <div className="d-flex flex-wrap gap-2">
                                         {systemTags.map(tag => (
@@ -320,106 +318,6 @@ const BookDetailsPage = () => {
                                             ))}
                                         </div>
                                     </div>
-
-                                    {/* <div className="mt-4">
-                                        <h5>Базовые теги:</h5>
-                                        <div className="d-flex flex-wrap gap-2">
-                                            {systemTags.map(tag => (
-                                                <Button
-                                                    key={tag.id}
-                                                    variant={bookshelfTags.includes(tag.id) ? 'primary' : 'outline-secondary'}
-                                                    size="sm"
-                                                    onClick={() => toggleTag(tag.id)}
-                                                >
-                                                    {tag.name}
-                                                </Button>
-                                            ))}
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-4">
-                                        <h5>Добавить новый тег:</h5>
-                                        <Form.Control
-                                            type="text"
-                                            placeholder="Введите название тега"
-                                            value={newTagName}
-                                            onChange={(e) => setNewTagName(e.target.value)}
-                                        />
-                                        <Button
-                                            variant="success"
-                                            onClick={handleAddNewTag}
-                                            disabled={!newTagName}
-                                            className="mt-2"
-                                        >
-                                            Добавить тег +
-                                        </Button>
-                                    </div>
-
-                                    <div className="mt-4">
-                                        <h5>Мои теги:</h5>
-                                        <div className="d-flex flex-wrap gap-2">
-                                            {userTags.map(tag => (
-                                                <div key={tag.id} className="d-flex align-items-center mb-2">
-                                                    {editingTagId === tag.id ? (
-                                                        <div className="d-flex align-items-center">
-                                                            <Form.Control
-                                                                type="text"
-                                                                value={editedTagName}
-                                                                onChange={(e) => setEditedTagName(e.target.value)}
-                                                                size="sm"
-                                                                autoFocus
-                                                                className="me-2"
-                                                                style={{ width: '150px' }}
-                                                            />
-                                                            <Button
-                                                                variant="success"
-                                                                size="sm"
-                                                                className="me-2"
-                                                                onClick={() => handleSaveEdit(tag.id)}
-                                                            >
-                                                                ✓
-                                                            </Button>
-                                                            <Button
-                                                                variant="secondary"
-                                                                size="sm"
-                                                                onClick={handleCancelEdit}
-                                                            >
-                                                                ✕
-                                                            </Button>
-                                                        </div> 
-                                                    ) : (
-                                                        <div className="d-flex align-items-center">
-                                                            <Button
-                                                                variant={bookshelfTags.includes(tag.id) ? 'primary' : 'outline-secondary'}
-                                                                size="sm"
-                                                                onClick={() => toggleTag(tag.id)}
-                                                                className="me-2"
-                                                            >
-                                                                {tag.name}
-                                                            </Button>
-                                                            <Button
-                                                                variant="outline-warning"
-                                                                size="sm"
-                                                                className="me-2"
-                                                                onClick={() => handleStartEditing(tag)}
-                                                                title="Редактировать"
-                                                            >
-                                                                <Pencil size={14} />
-                                                            </Button>
-                                                            <Button
-                                                                variant="outline-danger"
-                                                                size="sm"
-                                                                onClick={() => handleDeleteTag(tag.id)}
-                                                                title="Удалить"
-                                                            >
-                                                                <Trash size={14} />
-                                                            </Button>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div> */}
                                 </>
                             )}
                         </>

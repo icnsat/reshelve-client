@@ -6,8 +6,7 @@ import { Pencil, Trash } from 'react-bootstrap-icons';
 import api from '../api/api';
 
 const BookshelfDetailsPage = () => {
-    const { bookshelfId } = useParams(); // 📌 Передаётся bookshelfId
-    // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+    const { bookshelfId } = useParams();
     const navigate = useNavigate();
 
     const [book, setBook] = useState(null);
@@ -174,14 +173,6 @@ const BookshelfDetailsPage = () => {
         setShowDeleteCommentModal(true);
     };
     
-    // const handleDeleteComment = async (commentId) => {
-    //     if (window.confirm('Удалить заметку?')) {
-    //         await api.delete(`/bookshelf/${bookshelfId}/comments/${commentId}`);
-    //         fetchBook();
-    //     }
-    // };
-
-
     const handleDeleteComment = async () => {
         try{
             await api.delete(`/bookshelf/${bookshelfId}/comments/${commentToDeleteId}`);
@@ -193,7 +184,7 @@ const BookshelfDetailsPage = () => {
         }
     };
 
-    // === Логи чтения ===
+
     const handleAddLog = async () => {
         const { start_page, end_page, duration_minutes, date } = newLog;
         if (!start_page || !end_page || !duration_minutes || !date) return;
@@ -279,7 +270,6 @@ const BookshelfDetailsPage = () => {
 
                     <hr />
 
-                    {/* ТЕГИ */}
                     <h4 className="mt-5">Теги</h4>
                     <div className="d-flex flex-wrap gap-2">
                         {systemTags.map(tag => (
@@ -295,12 +285,10 @@ const BookshelfDetailsPage = () => {
                     </div>
 
                     <div className="mt-4 d-flex align-items-center gap-2" style={{ maxWidth: '300px' }}>
-                        {/* <h5>Добавить новый тег:</h5> */}
                         <Button
                             variant="success"
                             onClick={handleAddNewTag}
                             disabled={!newTagName}
-                            // className="mt-2"
                             size="sm"
                         >
                             +
@@ -317,7 +305,6 @@ const BookshelfDetailsPage = () => {
 
 
                     <div className="mt-4">
-                        {/* <h5>Мои теги:</h5> */}
                         <div className="d-flex flex-wrap gap-2">
                             {userTags.map(tag => (
                                 <div key={tag.id} className="d-flex align-items-center mb-2">
@@ -381,110 +368,9 @@ const BookshelfDetailsPage = () => {
                             ))}
                         </div>
                     </div>
-
-                    {/* <div className="mt-4">
-                        <h5>Базовые теги:</h5>
-                        <div className="d-flex flex-wrap gap-2">
-                            {systemTags.map(tag => (
-                                <Button
-                                    key={tag.id}
-                                    variant={bookshelfTags.includes(tag.id) ? 'primary' : 'outline-secondary'}
-                                    size="sm"
-                                    onClick={() => toggleTag(tag.id)}
-                                >
-                                    {tag.name}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
-
-                    <div className="mt-4">
-                        <h5>Добавить новый тег:</h5>
-                        <Form.Control
-                            type="text"
-                            placeholder="Введите название тега"
-                            value={newTagName}
-                            onChange={(e) => setNewTagName(e.target.value)}
-                        />
-                        <Button
-                            variant="success"
-                            onClick={handleAddNewTag}
-                            disabled={!newTagName}
-                            className="mt-2"
-                        >
-                            Добавить тег +
-                        </Button>
-                    </div>
-
-                    <div className="mt-4">
-                        <h5>Мои теги:</h5>
-                        <div className="d-flex flex-wrap gap-2">
-                            {userTags.map(tag => (
-                                <div key={tag.id} className="d-flex align-items-center mb-2">
-                                    {editingTagId === tag.id ? (
-                                        <div className="d-flex align-items-center">
-                                            <Form.Control
-                                                type="text"
-                                                value={editedTagName}
-                                                onChange={(e) => setEditedTagName(e.target.value)}
-                                                size="sm"
-                                                autoFocus
-                                                className="me-2"
-                                                style={{ width: '150px' }}
-                                            />
-                                            <Button
-                                                variant="success"
-                                                size="sm"
-                                                className="me-2"
-                                                onClick={() => handleSaveEdit(tag.id)}
-                                            >
-                                                ✓
-                                            </Button>
-                                            <Button
-                                                variant="secondary"
-                                                size="sm"
-                                                onClick={handleCancelEdit}
-                                            >
-                                                ✕
-                                            </Button>
-                                        </div> 
-                                    ) : (
-                                        <div className="d-flex align-items-center">
-                                            <Button
-                                                variant={bookshelfTags.includes(tag.id) ? 'primary' : 'outline-secondary'}
-                                                size="sm"
-                                                onClick={() => toggleTag(tag.id)}
-                                                className="me-2"
-                                            >
-                                                {tag.name}
-                                            </Button>
-                                            <Button
-                                                variant="outline-warning"
-                                                size="sm"
-                                                className="me-2"
-                                                onClick={() => handleStartEditing(tag)}
-                                                title="Редактировать"
-                                            >
-                                                <Pencil size={14} />
-                                            </Button>
-                                            <Button
-                                                variant="outline-danger"
-                                                size="sm"
-                                                onClick={() => handleDeleteTag(tag.id)}
-                                                title="Удалить"
-                                            >
-                                                <Trash size={14} />
-                                            </Button>
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    </div> */}
 
                     <hr className="mt-5" />
 
-                    {/* ЗАМЕТКИ */}
                     <h4 className="mt-5">Заметки</h4>
                     <Form.Control
                         as="textarea"
@@ -561,7 +447,6 @@ const BookshelfDetailsPage = () => {
 
                     <hr className="mt-5" />
 
-                    {/* ЛОГИ ЧТЕНИЯ */}
                     <h4 className="mt-5">Логи чтения</h4>
                     <Row className="g-2">
                         <Col><Form.Control type="number" min="0" placeholder="Со страницы" value={newLog.start_page} onChange={(e) => setNewLog(prev => ({ ...prev, start_page: e.target.value }))} /></Col>

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Navbar, Container, Nav } from "react-bootstrap";
 
 import { logout } from "../slices/authSlice";
-// import DiscountModal from './DiscountModal';
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -32,7 +31,6 @@ const Header = () => {
     };
     
     const IsAdmin = (isAuthenticated && role === 'admin');
-    // const IsStaff = (isAuthenticated && role === 'staff');
     const IsUser = (isAuthenticated && role === 'user');
 
     const onLogout = () => {
@@ -76,15 +74,9 @@ const Header = () => {
                 <Nav>
                     {isAuthenticated ? 
                     (
-                        <>
-                            {/* {IsAdmin || IsStaff ? ( */}
-                                <>
-                                    <Navbar.Text className="me-2">{username}</Navbar.Text>
-                                    <Button variant="outline-danger" onClick={onLogout}>Выход</Button>
-                                </>
-                            {/* // ) : ( */}
-                            {/* //     <Nav.Link as={Link} to="/account" class="text-reset text-decoration-none">{username}</Nav.Link>
-                            // )} */}
+                        <>      
+                            <Navbar.Text className="me-2">{username}</Navbar.Text>
+                            <Button variant="outline-danger" onClick={onLogout}>Выход</Button>      
                         </>
                     ) : (
                         <>
