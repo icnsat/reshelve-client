@@ -9,10 +9,10 @@ const ProtectedRoute = ({ allowedRoles, children }) => {
     return <Navigate to="/login" replace />;
   }
 
-  // if (!allowedRoles.includes(user.role)) {
-  //   // Если роль не разрешена - редирект на главную страницу
-  //   return <Navigate to="/" replace />;
-  // }
+  if (!allowedRoles.includes(user.role)) {
+    // Если роль не разрешена - редирект на главную страницу
+    return <Navigate to="/" replace />;
+  }
 
   // Иначе отдаем дочерние элементы
   return children;

@@ -31,7 +31,7 @@ const Header = () => {
         );
     };
     
-    // const IsAdmin = (isAuthenticated && role === 'admin');
+    const IsAdmin = (isAuthenticated && role === 'admin');
     // const IsStaff = (isAuthenticated && role === 'staff');
     const IsUser = (isAuthenticated && role === 'user');
 
@@ -57,8 +57,19 @@ const Header = () => {
                         </Link>
                     </Navbar.Brand>
 
-                    <Nav.Link as={Link} to="/books">Поиск книг</Nav.Link>
-                    <Nav.Link as={Link} to="/bookshelf">Мои книги</Nav.Link>
+                    {IsAdmin ? (
+                        <>
+                            <Nav.Link as={Link} to="/admin/tags">Редактор тегов</Nav.Link>
+                            <Nav.Link as={Link} to="/admin/books">Редактор книг</Nav.Link>
+                            <Nav.Link as={Link} to="/books">Поиск книг</Nav.Link>
+                        </>
+                    ) : (
+                        <>
+                            <Nav.Link as={Link} to="/books">Поиск книг</Nav.Link>
+                            <Nav.Link as={Link} to="/bookshelf">Мои книги</Nav.Link>
+                        </>
+                    )}
+                    
 
                 </Nav>
 

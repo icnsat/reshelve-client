@@ -17,6 +17,8 @@ import BooksPage from './pages/BooksPage';
 import BookDetailsPage from './pages/BookDetailsPage';
 import BookshelfPage from './pages/BookshelfPage';
 import BookshelfDetailsPage from './pages/BookshelfDetailsPage';
+import AdminTagsPage from './pages/AdminTagsPage';
+import AdminBooksPage from './pages/AdminBooksPage';
 
 
 function App() {
@@ -34,16 +36,30 @@ function App() {
 
 
                         <Route path="/bookshelf" element={
-                            <ProtectedRoute>
+                            <ProtectedRoute allowedRoles={['user']}>
                                 <BookshelfPage />
                             </ProtectedRoute>
                         }></Route>
 
                         <Route path="/bookshelf/:bookshelfId" element={
-                            <ProtectedRoute>
+                            <ProtectedRoute allowedRoles={['user']}>
                                 <BookshelfDetailsPage />
                             </ProtectedRoute>
                         }></Route>
+
+
+                        <Route path="/admin/tags" element={
+                            <ProtectedRoute allowedRoles={['admin']}>
+                                <AdminTagsPage />
+                            </ProtectedRoute>
+                        }></Route>
+
+                        <Route path="/admin/books" element={
+                            <ProtectedRoute allowedRoles={['admin']}>
+                                <AdminBooksPage />
+                            </ProtectedRoute>
+                        }></Route>
+
 
                         {/*<Route path="/account" element={
                             <ProtectedRoute allowedRoles={['user']}>

@@ -29,7 +29,7 @@ const BookshelfPage = () => {
     const fetchTags = async () => {
         try {
             const tagsResponse = await api.get('/tags');
-            setTags(tagsResponse.data);
+            setTags(tagsResponse.data.allTags);
             console.log(tagsResponse.data);
         } catch (err) {
             console.error('Ошибка при загрузке тегов');
@@ -88,7 +88,7 @@ const BookshelfPage = () => {
             <hr />
 
             <Row className='mb-4'>
-                {tags.length == 0 ? (
+                {tags.length === 0 ? (
                     <Col>
                         <div className="text-center py-5">
                             <h2>Теги не найдены</h2>
